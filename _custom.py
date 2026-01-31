@@ -342,7 +342,7 @@ def get_algo_params(trial: optuna.Trial, model: BaseRecommender, evaluator_es: E
             "num_factors": trial.suggest_int("num_factors", 1, 1000),
             "topK": trial.suggest_int("topK", 5, 1500),            
         }
-    if model in [ItemKNNCBFRecommender,UserKNNCBFRecommender]:
+    if model in [ItemKNNCBFRecommender, UserKNNCBFRecommender]:
         params = {
             "similarity": trial.suggest_categorical("similarity", ['cosine', 'dice', 'jaccard', 'asymmetric', 'tversky', 'euclidean']),
             "topK": trial.suggest_int("topK", 5, 1500),
