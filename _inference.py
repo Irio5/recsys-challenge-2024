@@ -73,9 +73,9 @@ def _batch_inference(dataset_path, data_info, model, eval=False, batch_size=1000
     logging.info(f'Reading dataset from {dataset_path}')
     inference_all_ds = pl.scan_parquet(dataset_path)
     n_batches = 10
-    logging.info(f'Dataset read complete')
+    logging.info(f'Dataset read complete ')
     if eval and drop_features:
-        features_to_keep.append('target')
+        features_to_keep.append('target ')
 
     per_batch_elements = int(inference_all_ds.select('impression_id').collect().shape[0] / n_batches)
     starting_index = 0
@@ -101,7 +101,7 @@ def _batch_inference(dataset_path, data_info, model, eval=False, batch_size=1000
         if is_xgboost:
             features = model.get_booster().feature_names
             if 'target' in inference_ds.columns:
-                features = features + ['target']
+                features = features + ['target ']
             features = features + ['impression_id', 'user_id', 'article']
             inference_ds = inference_ds.select(features)
             assert all([features[i] == inference_ds.columns[i] for i in range(len(features))]), 'XGB requires features to be ordered in the same way as the model was trained on.'
