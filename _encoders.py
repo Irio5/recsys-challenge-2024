@@ -14,7 +14,7 @@ def build_target_encoder_features(df_features: pl.DataFrame, behaviors: pl.DataF
 
     encoder = build_target_encoder(df.select(cols).to_numpy(), df['labels'].to_numpy())
     X_enc = encoder.transform(df_features.select(cols).to_numpy())
-    df_features = df_features.with_columns(pl.Series(X_enc[:, i]).alias(f'{col}_target_encoded') for i, col in enumerate(cols))
+    df_features = df_features.with_columns(pl.Series(X_enc[:,i]).alias(f'{col}_target_encoded') for i, col in enumerate(cols))
     
     return df_features, encoder
 
